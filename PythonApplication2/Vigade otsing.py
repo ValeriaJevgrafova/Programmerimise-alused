@@ -1,37 +1,38 @@
-import math
-print("Ruudu karakteristikud")
+while True:
+    try:
+        c = float(input("Sisesta ristkÃ¼liku 2. kÃ¼lje pikkus => "))
+        if c <= 0:
+            print("KÃ¼lje pikkus peab olema positiivne arv.")
+            continue
+        break
+    except ValueError:
+        print("Sisesta kehtiv arv.")
 
-a = float(input('Sisesta ruudu külje pikkus => '))  
-S = a ** 2  
-print("Ruudu pindala:", S) 
-P = 4 * a 
-print("Ruudu ümbermõõt:", P) 
+S = b * c
+print("RistkÃ¼liku pindala:", S)
+P = 2 * (b + c) 
+print("RistkÃ¼liku Ã¼mbermÃµÃµt:", P)
+di = math.sqrt(b ** 2 + c ** 2) 
+print("RistkÃ¼liku diagonaal:", round(di, 2))
 
-di = a * math.sqrt(2) 
-print("Ruudu diagonaal:", round(di, 2))  
 print()
-print("Ristküliku karakteristikud")
 
-b = float(input("Sisesta ristküliku 1. külje pikkus => "))
-c = float(input("Sisesta ristküliku 2. külje pikkus => "))
-S = b * c 
-print("Ristküliku pindala:", S)  
-
-P = 2 * (b + c)  
-print("Ristküliku ümbermõõt:", P)
-
-di = math.sqrt(b**2 + c**2) 
-print("Ristküliku diagonaal:", round(di, 2)) 
-print() 
 print("Ringi karakteristikud")
 
-r = float(input("Sisesta ringi raadiusi pikkus => "))  
-d = 2 * r  
-print("Ringi läbimõõt:", d)
+while True:
+    try:
+        r = float(input('Sisesta ringi raadiusi pikkus => '))
+        if r <= 0:
+            print("Raadius peab olema positiivne arv.")
+            continue
+        break
+    except ValueError:
+        print("Sisesta kehtiv arv.")
 
-S = math.pi * r**2 
-print("Ringi pindala:", round(S, 2)) 
+d = 2 * r
+print("Ringi lÃ¤bimÃµÃµt:", d)
 
-C = 2 * math.pi * r 
-print("Ringjoone pikkus:", round(C, 2))  
-
+S = math.pi * r ** 2 
+print("Ringi pindala:", round(S, 2))
+C = 2 * math.pi * r
+print("Ringjoone pikkus:", round(C, 2))
