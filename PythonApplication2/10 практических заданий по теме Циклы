@@ -1,0 +1,303 @@
+#Ülesanne 1
+print("Ülesanne 1")
+täisarvud=0
+for i in range(15):
+    while True:
+        try:
+            arv=float(input(f"Sisesta {i+1}. arv"))
+            break
+        except:
+            print("Kirjuta ainult numbrid")
+    # 2.5 int(2.5)=2
+    if arv==int(arv):täisarvud+=1
+print("Täisarvude kogus: {täisarvud}")
+
+#Ülesanne 2
+print("Ülesanne 2")
+summa=0
+while True:
+    try:
+        A=int(input("Sisesata A:"))
+        if A>1:
+            for i in range(1,A+1):
+                summa+=i
+            print(f"Summa võrdub {summa}-ga")
+            break
+        else:
+            print("Arv A peab olema rohkem kui 1")
+    except:
+        print("Vale formaat")
+
+#Ülesanne 3
+print("Ülesanne 3")
+product = 1
+for i in range(8):
+    num = float(input("Sisestage number: "))
+    if num > 0:  
+        product *= num
+print(f"Positiivsete arvude korrutis: {product}")
+
+#Ülesanne 4
+print("Ülesanne 4")
+for i in range(10, 21):
+    print(f"{i} ruut on {i**2}")
+
+#Ülesanne 5
+print("Ülesanne 5")
+N = int(input("Sisestage arvude arv: "))
+sum_negatives = 0
+for _ in range(N):
+    num = float(input("Sisestage number: "))
+    if num < 0:
+        sum_negatives += num
+print(f"Negatiivsete arvude summa: {sum_negatives}")
+
+#Ülesanne 6
+print("Ülesanne 6")
+N = int(input("Sisestage arvude arv: "))
+positive = negative = zero = 0
+for _ in range(N):
+    num = float(input("Sisestage number: "))
+    if num > 0:
+        positive += 1
+    elif num < 0:
+        negative += 1
+    else:
+        zero += 1
+print(f"Positiivseid arve: {positive}, Negatiivseid arve: {negative}, Nullide arv: {zero}")
+
+#Ülesanne 7
+print("Ülesanne 7")
+A = int(input("Sisestage A: "))
+B = int(input("Sisestage B: "))
+K = int(input("Sisestage K: "))
+for i in range(A, B+1):
+    if i % K == 0:
+        print(i)
+
+#Ülesanne 8
+print("Ülesanne 8")
+print("Tollid | Sentimeetrid")
+for inches in range(1, 21):
+    cm = inches * 2.5
+    print(f"{inches:5} | {cm:10.2f}")
+
+#Ülesanne 9
+print("Ülesanne 9")
+S = float(input("Sisestage algsumma S (eurodes): "))
+N = int(input("Sisestage aastate arv N: "))
+rate = 0.03
+final_amount = S * (1 + rate) ** N
+print(f"Kontosumma pärast {N} aastat: {final_amount:.2f} eurot")
+
+#Ülesanne 10
+print("Ülesanne 10")
+for i in range(10):
+    a = float(input("Sisestage esimene number: "))
+    b = float(input("Sisestage teine number: "))
+    print(f"Suurem number: {max(a, b)}")
+
+#Ülesanne 11
+print("Ülesanne 11")
+import random
+
+random_num = random.randint(1, 10)
+
+product = 1
+for num in range(11, 100, 2):
+    if num % random_num == 0:
+        product *= num
+
+print("Korrutis:", product)
+
+#Ülesanne 12
+print("Ülesanne 12")
+N = int(input("Sisesta heinapuhastusmasinate arv: "))
+m = int(input("Sisesta esimese masina töötundide arv: "))
+
+total_hours = 0
+for i in range(N):
+    total_hours += m + i * (10 / 60) 
+
+print("Kogu brigaadi tööaeg:", total_hours, "tundi")
+
+#Ülesanne 13
+print("Ülesanne 13")
+count = 0
+sum_nums = 0
+
+for num in range(100, 1000):
+    if num % 7 == 0:
+        count += 1
+        sum_nums += num
+
+print("Arvude kogus:", count)
+print("Arvude summa:", sum_nums)
+
+#Ülesanne 14
+print("Ülesanne 14")
+N = random.randint(1, 10)
+
+product = 1
+for i in range(1, N + 1):
+    product *= i
+
+print(f"Arvude korrutis vahemikus 1 kuni {N}: {product}")
+
+#Ülesanne 15
+print("Ülesanne 15")
+for j in range(10):
+    for i in range(10):
+        print(i,end=" ")
+    print()
+print()
+
+#Ülesanne 16
+print("Ülesanne 16")
+for i in range(10):
+    row = [0] * 9
+    row[i] = i + 1
+    print(" ".join(map(str, row)))
+
+#Ülesanne 17
+print("Ülesanne 17")
+for i in range(1, 10):
+    print(f"2 * {i} = {2 * i}")
+
+#Ülesanne 18
+print("Ülesanne 18")
+for num in range(20, 51):
+    if num % 3 == 0 and num % 5 != 0:
+        print(num)
+
+#Ülesanne 19
+print("Ülesanne 19")
+for num in range(35, 88):
+    if num % 7 in [1, 2, 5]:
+        print(num)
+
+#Ülesanne 20
+print("Ülesanne 20")
+sum_of_numbers = 0
+for num in range(1, 51):
+    if num % 5 == 0 or num % 7 == 0:
+        sum_of_numbers += num
+
+print("Summa:", sum_of_numbers)
+
+#Ülesanne 21
+print("Ülesanne 21")
+numbers = [int(input(f"Sisesta number {i+1}: ")) 
+           for i in range(10)]
+modified_numbers = [abs(num):
+                   if num < 0 
+     else num 
+         for num in numbers]
+print("Muudetud arvud:", modified_numbers)
+
+#Ülesanne 22
+print("Ülesanne 22")
+sum_of_numbers = 0
+for num in range(100, 201):
+    if num % 17 == 0:
+        sum_of_numbers += num
+
+print("Summa:", sum_of_numbers)
+
+#Ülesanne 23
+print("Ülesanne 23")
+import math
+
+N = int(input("Sisesta punktide arv: "))
+a = float(input("Sisesta ringi keskpunkti x-koordinaat: "))
+b = float(input("Sisesta ringi keskpunkti y-koordinaat: "))
+R = float(input("Sisesta ringi raadius: "))
+
+inside_count = 0
+for _ in range(N):
+    x = float(input("Sisesta punkti x-koordinaat: "))
+    y = float(input("Sisesta punkti y-koordinaat: "))
+    if math.sqrt((x - a) ** 2 + (y - b) ** 2) <= R:
+        inside_count += 1
+
+print(f"Ringis asub {inside_count} punkti.")
+
+#Ülesanne 24
+print("Ülesanne 24")
+N = int(input("Sisesta õpilaste arv: "))
+heights = [float(input(f"Õpilase {i+1} kõrgus: ")) 
+           for i in range(N)]
+
+average_height = sum(heights) / N
+print(f"Keskmine kõrgus: {average_height}")
+
+#Ülesanne 25
+print("Ülesanne 25")
+N = int(input("Sisesta suurim number N: "))
+count = 0
+for num in range(1, N+1):
+    if num % 2 != 0 and num % 3 != 0 and num % 5 != 0:
+        count += 1
+
+print(f"Arvude arv, mis ei ole jagatavad 2, 3 ega 5-ga: {count}")
+
+#Ülesanne 26
+print("Ülesanne 26")
+for A in range(10, 100):
+    for B in range(10, 100):
+        combined1 = int(str(A) + str(B))
+        combined2 = int(str(B) + str(A))
+        if combined1 % (A * B) == 0 and combined2 % (A * B) == 0:
+            print(f"A: {A}, B: {B}")
+
+#Ülesanne 27
+print("Ülesanne 27")
+for A in range(10, 100):
+    for B in range(10, 100):
+        num1 = int(str(A) + str(B))
+        num2 = int(str(B) + str(A))
+        if num1 % 99 == 0 and num2 % 49 == 0:
+            print(f"A: {A}, B: {B}")
+
+#Ülesanne 28
+print("Ülesanne 28")
+import random
+
+number = random.randint(1, 100)
+attempts = 0
+
+while True:
+    guess = int(input("Arva ära number (1 kuni 100): "))
+    attempts += 1
+    if guess < number:
+        print("Liiga väike!")
+    elif guess > number:
+        print("Liiga suur!")
+    else:
+        print(f"Õnnestus! Arvasid numbri {number} ära {attempts} katses.")
+        break
+
+#Ülesanne 29
+print("Ülesanne 29")
+for i in range(9):
+    row = ['x' if j == i else '0' for j in range(9)]
+    print(" ".join(row))
+
+#Ülesanne 30
+print("Ülesanne 30")
+M = random.randint(1, 10)
+N = random.randint(1, 10)
+
+print("Järjestus N-st M-ni:", list(range(N, M - 1, -1)))
+print("Järjestus M-st N-ni:", list(range(M, N - 1, -1)))
+
+#Ülesanne 31
+print("Ülesanne 31")
+K = int(input("Sisesta kotlettide arv (K): "))
+M = int(input("Sisesta, kui palju kotlette mahub ühele pannile (M): "))
+
+full_pans = K // M
+remaining_patties = K % M
+
+print(f"Täis panne: {full_pans}")
+print(f"Viimases pannis on {remaining_patties} kotlette.")
