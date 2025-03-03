@@ -1,0 +1,61 @@
+print("*** ARVUMÄNGUD ***")
+print();
+
+while True:
+    try:
+        # Kasutaja sisestab täisarvu, millel ei tohiks olla komakohti
+        a = abs(int(input("Sisesta täisarv => ")))  # Kasutame abs(), et tagada positiivne arv
+        break  # Kui sisend on õige, katkestame tsükli
+    except ValueError:
+        print("See ei ole täisarv")  # Kui sisestatud väärtus ei ole täisarv, kuvatakse viga
+
+if a == 0:
+    print("Pole mõtet midagi nulliga teha")  # Nulliga ei saa töötada
+else:
+
+    print("Määrame, kui palju on arvus paarisarve ja paaritumate numbreid")
+    print();
+    c = b = a  # Algväärtustame muutujad c ja b väärtusega a
+    paaris = 0  # Paarisarvude arv
+    paaritu = 0  # Paaritumate arv
+
+    while b > 0:
+        # Kontrollime, kas number on paarisarv või paaritumine
+        if b % 2 == 0:
+            paaris += 1  # Kui paarisarv, suurendame paarisarvude loendurit
+        else:
+            paaritu += 1  # Kui paaritum, suurendame paaritumate loendurit
+        b = b // 10  # Jagame b 10-ga, et liikuda järgmise numbrini
+
+    print("Paarisarve:", paaris)
+    print("Paaritumad numbrid:", paaritu)
+    print()
+
+    print("*Pöörame* sisestatud numbri ümber")
+    print()
+    b = 0
+    while a > 0:
+        number = a % 10  # Võtame viimase numbri
+        a = a // 10  # Eemaldame viimase numbri
+        b = b * 10  # Liigutame eelnevad numbrid ühe koha võrra vasakule
+        b += number  # Lisame uue numbri pööratud järjekorda
+    print("*Pööratud* number:", b)
+    print()
+    
+    print("Kontrollime Siraakuse hüpoteesi")
+    print()
+    if c % 2 == 0:  # Kui arv on paarisarv
+        print("c - paarisarv. Jagame 2-ga.")
+    else:  # Kui arv on paaritum, siis korrutame 3-ga, lisame 1 ja jagame 2-ga
+        print("c - paaritum arv. Korrutame 3-ga, lisame 1 ja jagame 2-ga.")
+    
+    # Siraakuse hüpoteesi kontrollimine
+    while c != 1:
+        if c % 2 == 0:
+            c = c // 2  # Kui c on paarisarv, jagame 2-ga
+        else:
+            c = (3 * c + 1) // 2  # Kui c on paaritum, rakendame Siraakuse reeglit
+        print(c, end=" ")  # Kuvame iga vahepealse arvu
+
+    print()
+    print("Hüpotees on õige")  # Kui jõuame 1-ni, siis hüpotees on tõestatud
