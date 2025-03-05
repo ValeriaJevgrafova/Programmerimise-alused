@@ -1,0 +1,33 @@
+#5.1
+DECLARE @n INT = 3;  -- #(Задать кол-во) домов
+
+DECLARE @house NVARCHAR(MAX) 
+DECLARE @i INT = 1; 
+DECLARE @output NVARCHAR(MAX) = ''; 
+WHILE @i <= @n 
+BEGIN
+SET @output = @output + @house + ' ';
+SET @i = @i + 1;
+END 
+
+SELECT @output AS Houses;
+
+#5.2
+SELECT class_id, 
+AVG(grade) AS average_grade
+FROM students_grades
+GROUP BY class_id;
+
+#5.3
+SELECT MIN(grade) AS min_grade, 
+MAX(grade) AS max_grade
+FROM students_grades;
+
+#5.4
+SELECT SUM(population) / SUM(area) AS average_population_density
+FROM districts;
+
+#5.5
+SELECT x_value, 
+-0.5 * x_value + x_value AS y_value
+FROM (VALUES (1), (1.5), (2), (2.5), (3)) AS x_values(x_value);
