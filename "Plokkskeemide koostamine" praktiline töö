@@ -32,3 +32,27 @@ while True:
             sleep(aeg)
             print(f"Valmis!")
             print("Kõik kotletid on praetud")
+
+--V1.1
+CREATE TABLE figures (
+    id INT PRIMARY KEY,
+    radius DECIMAL(10, 2),  
+    side DECIMAL(10, 2)     
+);
+
+INSERT INTO figures (id, radius, side)
+VALUES
+(1, 5, 4);
+
+SELECT 
+    id,
+    radius,
+    side,
+    (PI() * POWER(radius, 2)) AS circle_area,
+    POWER(side, 2) AS square_area,
+    CASE 
+        WHEN (PI() * POWER(radius, 2)) > POWER(side, 2) THEN 'Ring on suurem'
+        WHEN (PI() * POWER(radius, 2)) < POWER(side, 2) THEN 'Ruut on suurem'
+        ELSE 'Pindalad on võrdsed'
+    END AS comparison
+FROM figures;
