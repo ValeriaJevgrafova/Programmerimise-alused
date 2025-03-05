@@ -56,3 +56,30 @@ SELECT
         ELSE 'Pindalad on võrdsed'
     END AS comparison
 FROM figures;
+
+--V5.4
+CREATE TABLE bags (
+    first_bag_weight DECIMAL(10, 2),  -- esimese koti kaal
+    second_bag_weight DECIMAL(10, 2)  -- teise koti kaal
+);
+
+INSERT INTO bags (first_bag_weight, second_bag_weight)
+VALUES (10.5, 12.3);
+
+SELECT 
+    CASE 
+        WHEN first_bag_weight > second_bag_weight THEN 'Esimene kott on raskem'
+        WHEN first_bag_weight < second_bag_weight THEN 'Teine kott on raskem'
+        ELSE 'Kottide kaalud on võrdsed'
+    END AS comparison_result
+FROM bags;
+
+m = float(input("Sisesta esimese koti kaal (kg): "))
+n = float(input("Sisesta teise koti kaal (kg): "))
+
+if m > n:
+    print("Esimene kott on raskem")
+elif m < n:
+    print("Teine kott on raskem")
+else:
+    print("Kottide kaalud on võrdsed")
