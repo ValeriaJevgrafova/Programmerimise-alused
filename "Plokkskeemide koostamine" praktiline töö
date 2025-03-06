@@ -34,52 +34,46 @@ while True:
             print("Kõik kotletid on praetud")
 
 --V1.1
-CREATE TABLE figures (
-    id INT PRIMARY KEY,
-    radius DECIMAL(10, 2),  
-    side DECIMAL(10, 2)     
-);
+import math
+try:
+    radius = float(input("Sisesta ringi raadius (cm): "))
+    side = float(input("Sisesta ruudu külje pikkus (cm): "))
+    
+    if radius <= 0 or side <= 0:
+        raise ValueError("Raadius ja külje pikkus peavad olema positiivsed.")
 
-INSERT INTO figures (id, radius, side)
-VALUES
-(1, 5, 4);
+    circle_area = math.pi * radius ** 2
+    square_area = side ** 2
 
-SELECT 
-    id,
-    radius,
-    side,
-    (PI() * POWER(radius, 2)) AS circle_area,
-    POWER(side, 2) AS square_area,
-    CASE 
-        WHEN (PI() * POWER(radius, 2)) > POWER(side, 2) THEN 'Ring on suurem'
-        WHEN (PI() * POWER(radius, 2)) < POWER(side, 2) THEN 'Ruut on suurem'
-        ELSE 'Pindalad on võrdsed'
-    END AS comparison
-FROM figures;
+    print(f"Ring: pindala = {circle_area:.2f} cm²")
+    print(f"Ruut: pindala = {square_area:.2f} cm²")
+
+    if circle_area > square_area:
+        print("Ring on suurem")
+    elif circle_area < square_area:
+        print("Ruut on suurem")
+    else:
+        print("Pindalad on võrdsed")
+except ValueError as ve:
+    print(f"Viga: {ve}")
+except Exception as e:
+    print(f"Midagi läks valesti: {e}")
 
 --V5.4
-CREATE TABLE bags (
-    first_bag_weight DECIMAL(10, 2),  -- esimese koti kaal
-    second_bag_weight DECIMAL(10, 2)  -- teise koti kaal
-);
+try:
+    m = float(input("Sisesta esimese koti kaal (kg): "))
+    n = float(input("Sisesta teise koti kaal (kg): "))
 
-INSERT INTO bags (first_bag_weight, second_bag_weight)
-VALUES (10.5, 12.3);
+    if m <= 0 or n <= 0:
+        raise ValueError("Kaalud peavad olema positiivsed väärtused.")
 
-SELECT 
-    CASE 
-        WHEN first_bag_weight > second_bag_weight THEN 'Esimene kott on raskem'
-        WHEN first_bag_weight < second_bag_weight THEN 'Teine kott on raskem'
-        ELSE 'Kottide kaalud on võrdsed'
-    END AS comparison_result
-FROM bags;
-
-m = float(input("Sisesta esimese koti kaal (kg): "))
-n = float(input("Sisesta teise koti kaal (kg): "))
-
-if m > n:
-    print("Esimene kott on raskem")
-elif m < n:
-    print("Teine kott on raskem")
-else:
-    print("Kottide kaalud on võrdsed")
+    if m > n:
+        print("Esimene kott on raskem")
+    elif m < n:
+        print("Teine kott on raskem")
+    else:
+        print("Kottide kaalud on võrdsed")
+except ValueError as ve:
+    print(f"Viga: {ve}")
+except Exception as e:
+    print(f"Midagi läks valesti: {e}")
