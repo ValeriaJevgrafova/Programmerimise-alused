@@ -26,62 +26,106 @@ def mängi():
         else:
             print("Sa kaotasid!")
 
+
 #töötamine nimekirjade ja stringidega
 from random import *
-print("Loendite töötamine:")
 
-list1 = [1, 2, 3, 4, 5]
-print(f"Algne loend: {list1}")
+# Algselt on meil nimekiri, millega töötame
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-list1.append(6)
-print(f"Pärast append(6): {list1}")
+while True:
+    print("\nMenüü:")
+    print("1. Lisa element lõppu nimekirja (append)")
+    print("2. Laienda nimekirja teise nimekirjaga (extend)")
+    print("3. Sisesta element nimekirja kindlasse kohta (insert)")
+    print("4. Eemalda esimene element, mille väärtus on määratud (remove)")
+    print("5. Eemalda element kindla indeksiga (pop)")
+    print("6. Leia esimene element kindla väärtusega (index)")
+    print("7. Arvuta, mitu korda element nimekirjas esineb (count)")
+    print("8. Sorteeri nimekiri (sort)")
+    print("9. Pööra nimekiri ümber (reverse)")
+    print("10. Tee nimekirja koopia (copy)")
+    print("11. Kustuta kõik elemendid nimekirjast (clear)")
+    print("0. Välju programmist")
+    
+    # Küsi kasutajalt, millist tegevust ta soovib teha
+    choice = input("Vali tegevuse number: ")
 
-list1.insert(2, 99)
-print(f"Pärast insert(2, 99): {list1}")
+    if choice == "1":
+        # Lisa element lõppu nimekirja
+        element = int(input("Sisesta element, mis tuleb lisada: "))
+        my_list.append(element)
+        print("Nimekiri pärast lisamist:", my_list)
 
-list1.remove(99)
-print(f"Pärast remove(99): {list1}")
+    elif choice == "2":
+        # Laienda nimekirja teise nimekirjaga
+        extension_list = list(map(int, input("Sisesta elemendid, mis laiendavad nimekirja (lahutada tühikutega): ").split()))
+        my_list.extend(extension_list)
+        print("Nimekiri pärast laiendamist:", my_list)
 
-popped_element = list1.pop(3)
-print(f"Pärast pop(3) - eemaldatud element {popped_element}: {list1}")
+    elif choice == "3":
+        # Sisesta element kindlasse kohta nimekirjas
+        index = int(input("Sisesta indeks, kuhu element tuleb sisestada: "))
+        element = int(input("Sisesta element, mis tuleb sisestada: "))
+        my_list.insert(index, element)
+        print("Nimekiri pärast sisestamist:", my_list)
 
-index_of_3 = list1.index(3)
-print(f"Esimese 3 esinemise indeks: {index_of_3}")
+    elif choice == "4":
+        # Eemalda esimene element, mille väärtus on määratud
+        element = int(input("Sisesta element, mis tuleb eemaldada: "))
+        if element in my_list:
+            my_list.remove(element)
+            print("Nimekiri pärast eemaldamist:", my_list)
+        else:
+            print(f"Element {element} ei ole nimekirjas.")
 
-count_of_2 = list1.count(2)
-print(f"2 esinemiste arv: {count_of_2}")
+    elif choice == "5":
+        # Eemalda element kindla indeksiga
+        index = int(input("Sisesta indeks, mille järgi element eemaldada: "))
+        if 0 <= index < len(my_list):
+            removed_element = my_list.pop(index)
+            print(f"Eemaldatud element {removed_element}, nimekiri pärast eemaldamist:", my_list)
+        else:
+            print("Vale indeks.")
 
-list1.sort()
-print(f"Pärast sort(): {list1}")
+    elif choice == "6":
+        # Leia esimene element kindla väärtusega
+        element = int(input("Sisesta element, mille asukohta otsida: "))
+        if element in my_list:
+            index = my_list.index(element)
+            print(f"Element {element} asub indeksil: {index}")
+        else:
+            print(f"Element {element} ei ole nimekirjas.")
 
-list1.reverse()
-print(f"Pärast reverse(): {list1}")
+    elif choice == "7":
+        # Arvuta, mitu korda element nimekirjas esineb
+        element = int(input("Sisesta element, mille esinemiste arvu otsida: "))
+        count = my_list.count(element)
+        print(f"Element {element} esineb nimekirjas {count} korda.")
 
-list2 = list1.copy()
-print(f"Loendi list2 koopia: {list2}")
+    elif choice == "8":
+        # Sorteeri nimekiri
+        my_list.sort()
+        print("Nimekiri pärast sorteerimist:", my_list)
 
-list1.clear()
-print(f"Pärast clear(): {list1}")
+    elif choice == "9":
+        # Pööra nimekiri ümber
+        my_list.reverse()
+        print("Nimekiri pärast pööramist:", my_list)
 
-print("\nStringidega töötamine:")
+    elif choice == "10":
+        # Tee nimekirja koopia
+        copied_list = my_list.copy()
+        print("Koopia nimekirjast:", copied_list)
 
-string = "hello, world!"
-print(f"Algne string: {string}")
+    elif choice == "11":
+        # Kustuta kõik elemendid nimekirjast
+        my_list.clear()
+        print("Nimekiri on tühjendatud:", my_list)
 
-list_from_string = string.split(", ")
-print(f"Pärast split(', '): {list_from_string}")
+    elif choice == "0":
+        print("Programmist väljumine.")
+        break
 
-joined_string = ", ".join(list_from_string)
-print(f"Pärast join(', '): {joined_string}")
-
-new_string = string.replace("world", "Python")
-print(f"Pärast replace('world', 'Python'): {new_string}")
-
-upper_string = string.upper()
-print(f"Pärast upper(): {upper_string}")
-
-lower_string = string.lower()
-print(f"Pärast lower(): {lower_string}")
-
-substring = string[7:12]
-print(f"Alamstring alates 7. kuni 12. täheni: {substring}")
+    else:
+        print("Vale valik. Proovi uuesti.")
