@@ -33,7 +33,7 @@ while True:
             print(f"Valmis!")
             print("Kõik kotletid on praetud")
 
---V1.1
+#V1.1
 import math
 try:
     radius = float(input("Sisesta ringi raadius (cm): "))
@@ -59,7 +59,7 @@ except ValueError as ve:
 except Exception as e:
     print(f"Midagi läks valesti: {e}")
 
---V5.4
+#V5.4
 try:
     m = float(input("Sisesta esimese koti kaal (kg): "))
     n = float(input("Sisesta teise koti kaal (kg): "))
