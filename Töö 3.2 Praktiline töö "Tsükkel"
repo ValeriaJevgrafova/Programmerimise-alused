@@ -1,0 +1,74 @@
+#8
+paaris_count = 0
+paaritu_count = 0
+
+for number in range(1, 101):
+    if number % 2 == 0:
+        print(f"{number} on paaris")
+        paaris_count += 1
+    else:
+        print(f"{number} on paaritu")
+        paaritu_count += 1
+
+print(f"\nPaaris arvud: {paaris_count}")
+print(f"Paaritu arvud: {paaritu_count}")
+
+#11
+import random
+
+# Arvuti valib juhusliku arvu vahemikus 1-100
+number_to_guess = random.randint(1, 100)
+attempts = 3
+
+for attempt in range(attempts):
+    user_guess = int(input("Arva arv (1-100): "))
+    
+    if user_guess == number_to_guess:
+        print("Õnnitleme! Arvasite õigesti!")
+        break
+    else:
+        print("Vale vastus. Proovi veel.")
+        if attempt == attempts - 1:
+            print(f"Õige vastus oli {number_to_guess}.")
+            retry = input("Kas soovite proovida veel? (jah/ei): ")
+            if retry.lower() == "jah":
+                number_to_guess = random.randint(1, 100)
+                attempts = 3
+                print("Uus mäng algab!")
+#13
+print("Arv\tRuut\tKuup")
+for num in range(1, 11):
+    square = num ** 2
+    cube = num ** 3
+    print(f"{num}\t{square}\t{cube}")
+
+#17
+import turtle
+
+# Küsi kasutajalt ruudustiku mõõtmed
+rows = int(input("Sisesta ruudustiku vertikaalne arv (ridade arv): "))
+cols = int(input("Sisesta ruudustiku horisontaalne arv (veerude arv): "))
+
+# Algseaded kilpkonnale
+t = turtle.Turtle()
+t.speed(0)
+
+# Funktsioon ruudu joonistamiseks
+def draw_square():
+    for _ in range(4):
+        t.forward(50)
+        t.right(90)
+
+# Alustame joonistamist
+for row in range(rows):
+    for col in range(cols):
+        draw_square()
+        t.forward(50)  # Liigu paremale järgmise ruudu jaoks
+    t.backward(50 * cols)  # Liigu tagasi algusse
+    t.right(90)
+    t.forward(50)  # Liigu järgmisele reale
+    t.left(90)
+
+# Lõpeta
+t.hideturtle()
+turtle.done()
