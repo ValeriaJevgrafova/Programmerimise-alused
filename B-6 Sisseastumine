@@ -1,0 +1,76 @@
+from random import *
+    # Заполняем данные о людях
+    print("Sisestage taotlejate arv:")
+    num = int(input())
+    
+    for i in range(num):
+        name = input(f"Sisestage taotleja nimi #{i + 1}: ")
+        score = int(input(f"Sisestage taotleja hinded #{i + 1}: "))
+        abiturients.append(name)
+        baly.append(score)
+    
+    # Меню для выбора действия
+    while True:
+        print("\nMenüü:")
+        print("1. Registreerunute nimekirja väljaselgitamiseks (Sisestage sissekannete arv)")
+        print("2. Kuvada inimeste ja nende hinde nimekiri tähestikulises järjekorras.")
+        print("3. Leia n inimest halvimate tulemustega")
+        print("4. Leia taotlejate keskmine keskmine hinne")
+        print("5. Teie enda versioon")
+        print("6. Väljund")
+        
+        choice = int(input("Valige tegevus (1-6): "))
+        
+        if choice == 1:
+            num_admitted = int(input("Sisestage sissekannete arv: "))
+            print_admitted(abiturients, baly, num_admitted)
+        elif choice == 2:
+            print_sorted(abiturients, baly)
+        elif choice == 3:
+            n = int(input("Sisestage halvimate tulemustega inimeste arv: "))
+            print_worst(abiturients, baly, n)
+        elif choice == 4:
+            print_average(baly)
+        elif choice == 5:
+            print("Teie enda versioon")
+        elif choice == 6:
+            print("Programmist väljumine.")
+            break
+        else:
+            print("Vale valik, proovige uuesti.")
+
+def print_admitted(abiturients, baly, num_admitted):
+    # Сортируем по баллам, от большего к меньшему
+    sorted_abiturients = sorted(zip(abiturients, baly), key=lambda x: x[1], reverse=True)
+    admitted = sorted_abiturients[:num_admitted]
+    
+    print("\nRegistreeritud taotlejad:")
+    for name, score in admitted:
+        print(f"{name}: {score}")
+
+def print_sorted(abiturients, baly):
+    # Сортируем по имени в алфавитном порядке
+    sorted_abiturients = sorted(zip(abiturients, baly), key=lambda x: x[0])
+    
+    print("\nTaotlejad tähestikulises järjekorras:")
+    for name, score in sorted_abiturients:
+        print(f"{name}: {score}")
+
+def print_worst(abiturients, baly, n):
+    # Сортируем по баллам, от меньшего к большему
+    sorted_abiturients = sorted(zip(abiturients, baly), key=lambda x: x[1])
+    
+    print("\nLeitud n taotlejat kõige kehvemate tulemustega:")
+    for name, score in sorted_abiturients[:n]:
+        print(f"{name}: {score}")
+
+def print_average(baly):
+    # Находим средний балл
+    if len(baly) == 0:
+        print("Puuduvad skooriandmed.")
+    else:
+        average_score = sum(baly) / len(baly)
+        print(f"\nVastuvõetud isikute keskmine hinne: {average_score:.2f}")
+
+# Запуск программы
+sisseastumine()
