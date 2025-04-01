@@ -1,95 +1,61 @@
 import random
-class Program
-    static void Main(string{} args)
-        Console.WriteLine("Tere tulemast matemaatika teadmiste kontrollprogrammi!");
-        Console.WriteLine("Valige ülesande raskusaste:");
-        Console.WriteLine("1 - Kergekaaluline (Task 1)");
-        Console.WriteLine("2 - Keskmine (Task 2)");
-        Console.WriteLine("3 - Kompleksne (Task 3)");
 
-        int taskLevel = int.Parse(Console.ReadLine());
+def generate_question(difficulty, num_operations, number_range):
+    operations = ['+', '-', '*', '/']
+    question = ""
+    answer = None
 
-        Console.WriteLine("Sisestage lahendatavate näidete arv: ");
-        int numQuestions = int.Parse(Console.ReadLine());
+    # Генерация случайных чисел и операций
+    for i in range(num_operations):
+        num = random.randint(1, number_range)
+        question += str(num)
+        if i < num_operations - 1:
+            op = random.choice(operations)
+            question += f" {op} "
+    
+    # Считаем корректный ответ
+    try:
+        answer = eval(question)
+    except ZeroDivisionError:
+        # Обработка деления на ноль
+        return generate_question(difficulty, num_operations, number_range)
+    
+    return question, answer
 
-        int correctAnswers = 0;
+def main():
+    print("Tere tulemast matemaatika teadmiste kontrollija juurde!")
+    
+    # Выбор сложности
+    difficulty = int(input("Valige raskusaste (1, 2, 3): "))
+    num_operations = difficulty + 2  # Количество операций зависит от сложности
+    number_range = difficulty * 10  # Диапазон чисел зависит от сложности
 
-        Random random = new Random();
+    num_questions = int(input("Sisestage testitavate näidete arv: "))
+    correct_answers = 0
 
-        for (int i = 1; i <= numQuestions; i++) {
-            int num1, num2, answer = 0;
-            string operation = "";
-            switch (taskLevel){
-                case 1:
-                    num1 = random.Next(1, 11);  
-                    num2 = random.Next(1, 11);
-                    operation = random.Next(0, 2) == 0 ? "+" : "-"; 
-                    break;
+    for _ in range(num_questions):
+        question, answer = generate_question(difficulty, num_operations, number_range)
+        user_answer = input(f"Lahendage näide: {question} = ")
+        
+        # Проверка введенного ответа
+        if float(user_answer) == answer:
+            print("See on õige!")
+            correct_answers += 1
+        else:
+            print(f"Vale! Õige vastus on: {answer}")
 
-                case 2:
-                    num1 = random.Next(1, 21);
-                    num2 = random.Next(1, 21);
-                    operation = random.Next(0, 4);
-                    switch (operation)
-                        case 0: operation = "+"; break;
-                        case 1: operation = "-"; break;
-                        case 2: operation = "*"; break;
-                        case 3: operation = "/"; break;
-                    break;
+    # Оценка по результатам тестирования
+    score = correct_answers / num_questions * 100
+    print(f"\nTeie kogutulemus: {score:.2f}%")
 
-                case 3:
-                    num1 = random.Next(1, 51); 
-                    num2 = random.Next(1, 51);
-                    operation = random.Next(0, 5);
-                    switch (operation)
-                        case 0: operation = "+"; break;
-                        case 1: operation = "-"; break;
-                        case 2: operation = "*"; break;
-                        case 3: operation = "/"; break;
-                        case 4: operation = "**"; break;
-                    break;
+    if score < 60:
+        print("Hindamine: 2")
+    elif score < 75:
+        print("Hindamine: 3")
+    elif score < 90:
+        print("Hindamine: 4")
+    else:
+        print("Hindamine: 5")
 
-                default:
-                    Console.WriteLine("Vale raskusastme valik.");
-                    return;
-
-            Console.WriteLine($"Näide {i}: {num1} {operation} {num2} = ?");
-            double userAnswer = double.Parse(Console.ReadLine());
-
-            switch (operation)
-                case "+":
-                    answer = num1 + num2;
-                    break;
-                case "-":
-                    answer = num1 - num2;
-                    break;
-                case "*":
-                    answer = num1 * num2;
-                    break;
-                case "/":
-                    if (num2 != 0)
-                        answer = num1 / num2;
-                    else
-                        answer = 0;
-                    break;
-                case "**":
-                    answer = (int)Math.Pow(num1, num2);
-                    break;
-
-            if (userAnswer == answer) 
-                correctAnswers++;
-
-        double percentage = (double)correctAnswers / numQuestions * 100;
-        Console.WriteLine($"Sa vastasid {korrektsedAvastused} {numQuestions} näidetest õigesti.");
-
-        if (percentage < 60)
-            Console.WriteLine("Teie hinnang: 2");
-        else if (percentage >= 60 && percentage < 75)
-            Console.WriteLine("Teie hinnang: 3");
-        else if (percentage >= 75 && percentage < 90)
-            Console.WriteLine("Teie hinnang: 4");
-        else
-            Console.WriteLine("Teie hinnang: 5");
-
-        Console.WriteLine("Lõpetamiseks vajutage mis tahes klahvi.");
-        Console.ReadKey();
+if __name__ == "__main__":
+    main()
